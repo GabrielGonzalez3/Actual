@@ -107,8 +107,8 @@ $(function () {
     // const cardCustomers = $("#customer-num");
     // cardCustomers.append(`${customerNum}`);
 
-    const cardOrders = $("#orders-amt");
-    cardOrders.append(`${ordersAmt}`);
+    // const cardOrders = $("#orders-amt");
+    // cardOrders.append(`${ordersAmt}`);
 
     const cardIssues = $("#issues-amt");
     cardIssues.append(`${issuesAmt}`);
@@ -116,7 +116,7 @@ $(function () {
     const notificationNumber = $("#notification-num");
     notificationNumber.append(`${notifAmt}`);
 
-    const tableBody = $("#customerTableBody");
+   // const tableBody = $("#customerTableBody");
 
     // customers.forEach(customer => {
     //     const row = $("<tr>");
@@ -142,19 +142,19 @@ $(function () {
     // });
 
    
-    const salesTableBody = $("#salesTableBody");
+    // const salesTableBody = $("#salesTableBody");
 
-    sales.forEach(sale => {
-        const row = $("<tr>");
+    // sales.forEach(sale => {
+    //     const row = $("<tr>");
 
-        row.html(`
-            <td>${sale.product}</td>
-            <td>${sale.quantity}</td>
-            <td>${sale.revenue}</td>
-        `);
+    //     row.html(`
+    //         <td>${sale.product}</td>
+    //         <td>${sale.quantity}</td>
+    //         <td>${sale.revenue}</td>
+    //     `);
 
-        salesTableBody.append(row);
-    });
+    //     salesTableBody.append(row);
+    // });
 
     const activityList = $("#activity-list");
 

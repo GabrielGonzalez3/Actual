@@ -25,12 +25,18 @@ app.get("/", async (req, res) => {
 
     const customersResult = await db.query(`SELECT * FROM customers ORDER BY id LIMIT $1 OFFSET $2`, [10, 0]);
 
-    const revenueResult = await db.query("SELECT sum(saleamount) FROM sales ");
+    const revenueResult = await db.query("SELECT sum(saleamount) FROM sales");
+
+    const salesResult = await db.query("SELECT products.name, sales.quantity, sales.saleamount FROM sales LEFT JOIN products ON sales.productid = products.id ORDER BY sales.id ASC");
     
+    const orderCountResult = await db.query("SELECT count(quantity) FROM orders");
+
     res.render("index", {
         customersCount: customersCount.rows[0].count,
         customers: customersResult.rows,
-        revenue: revenueResult.rows[0].sum
+        revenue: revenueResult.rows[0].sum,
+        sales: salesResult.rows,
+        orderCount: orderCountResult.rows[0].count
     });
   }catch(err){
     res.status(500).json({
@@ -44,3 +50,15 @@ app.get("/", async (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
+/*
+
+await db.query("");
+
+SELECT count(quantity) FROM orders 
+SELECT count(id) FROM alerts WHERE type = 'issues' 
+SELECT * FROM alerts WHERE type = 'issues' 
+SELECT count(id) FROM alerts WHERE type = 'notifications' 
+SELECT * FROM alerts WHERE type = 'notifications' 
+SELECT * FROM alerts WHERE type = 'tasks'
+*/
