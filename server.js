@@ -5,11 +5,11 @@ const app = express();
 const port = 3000;
 
 
-const db = new pg.Clent({
+const db = new pg.Client({
     user: "postgres",
     password: "HyperGreninja24$",
     port: 5432,
-    database: "Customers"
+    database: "Random"
 });
 
 db.connect();
@@ -19,8 +19,13 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 
-app.get("/", (req, res) => {
-    res.render("index");
+app.get("/", async (req, res) => {
+    
+    const customersCount = await db.query("SELECT count(*) FROM customers");
+    
+    res.render("index", {
+        customersCount: customersCount.rows[0].count
+    });
 });
 
 app.listen(port, () => {
