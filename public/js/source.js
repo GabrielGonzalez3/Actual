@@ -113,8 +113,8 @@ $(function () {
     // const cardIssues = $("#issues-amt");
     // cardIssues.append(`${issuesAmt}`);
 
-    const notificationNumber = $("#notification-num");
-    notificationNumber.append(`${notifAmt}`);
+    // const notificationNumber = $("#notification-num");
+    // notificationNumber.append(`${notifAmt}`);
 
    // const tableBody = $("#customerTableBody");
 
@@ -174,22 +174,22 @@ $(function () {
     // });
 
 
-    const notificationsList = $("#notifications-list");
+    // const notificationsList = $("#notifications-list");
 
-    notifications.forEach(notif => {
-        const li = $("<li>");
-        li.html(`${notif.messsage}`);
-        notificationsList.append(li);
-    });
+    // notifications.forEach(notif => {
+    //     const li = $("<li>");
+    //     li.html(`${notif.messsage}`);
+    //     notificationsList.append(li);
+    // });
 
 
-    const tasksList = $("#tasks-list");
+    // const tasksList = $("#tasks-list");
 
-    tasks.forEach(task => {
-        const li = $("<li>");
-        li.html(`${task.messsage}`);
-        tasksList.append(li);
-    });
+    // tasks.forEach(task => {
+    //     const li = $("<li>");
+    //     li.html(`${task.messsage}`);
+    //     tasksList.append(li);
+    // });
 
 
     // All six jQuery UI functions

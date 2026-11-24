@@ -35,6 +35,11 @@ app.get("/", async (req, res) => {
 
     const issuesResult = await db.query("SELECT * FROM alerts WHERE type = 'issues'");
 
+    const notificationCountResult = await db.query("SELECT count(id) FROM alerts WHERE type = 'notifications' ");
+    
+    const notificationResult = await db.query("SELECT * FROM alerts WHERE type = 'notifications'");
+
+    const tasksResult = await db.query("SELECT * FROM alerts WHERE type = 'tasks'");
 
     res.render("index", {
         customersCount: customersCount.rows[0].count,
@@ -43,7 +48,10 @@ app.get("/", async (req, res) => {
         sales: salesResult.rows,
         orderCount: orderCountResult.rows[0].count,
         issueCount: issuesCountResult.rows[0].count,
-        issues: issuesResult.rows
+        issues: issuesResult.rows,
+        notificationCount: notificationCountResult.rows[0].count,
+        notifications: notificationResult.rows,
+        tasks: tasksResult.rows
     });
   }catch(err){
     res.status(500).json({
@@ -60,8 +68,4 @@ app.listen(port, () => {
 
 /*
 await db.query("");
-
-SELECT count(id) FROM alerts WHERE type = 'notifications' 
-SELECT * FROM alerts WHERE type = 'notifications' 
-SELECT * FROM alerts WHERE type = 'tasks'
 */
