@@ -52,7 +52,7 @@
                 </div>
                 <div class="card" id="card-issues">
                     <div class="stat-title">Issues</div>
-                    <div class="stat-value red"><span id="issues-amt"><!--12--></span></div>
+                    <div class="stat-value red"><span id="issues-amt"><%= issueCount %></span></div>
                 </div>
             </section>
 
@@ -114,10 +114,10 @@
                             <tbody id="customerTableBody">
                                 <% customers.forEach(customer => { %>
                                     <tr>
-                                        <td><% customer.name %></td>
-                                        <td><% customer.email %></td>
-                                        <td><% customer.status %></td>
-                                        <td><% customer.joined %></td>
+                                        <td><%= customer.name %></td>
+                                        <td><%= customer.email %></td>
+                                        <td><%= customer.status %></td>
+                                        <td><%= customer.datejoined %></td>
                                     </tr>
                                <% }) %>
                             </tbody>
@@ -133,8 +133,9 @@
                             <div>
                                 <p class="green">
                                     <ul id="system-status-list">
-                                        <!-- <li>All systems operational</li>
-                                        <li>All settings loaded for this system</li>                                         -->
+                                        <% issues.forEach(issue => { %>
+                                            <li><%= issue.description %></li>
+                                       <% }) %>
                                     </ul>
                                 </p>
                             </div>

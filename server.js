@@ -23,7 +23,7 @@ app.get("/", async (req, res) => {
   try{
     const customersCount = await db.query("SELECT count(*) FROM customers");
 
-    const customersResult = await db.query(`SELECT * FROM customers ORDER BY id LIMIT $1 OFFSET $2`, [10, 0]);
+    const customersResult = await db.query("SELECT * FROM customers ORDER BY id LIMIT $1 OFFSET $2", [10, 0]);
 
     const revenueResult = await db.query("SELECT sum(saleamount) FROM sales");
 
@@ -31,12 +31,19 @@ app.get("/", async (req, res) => {
     
     const orderCountResult = await db.query("SELECT count(quantity) FROM orders");
 
+    const issuesCountResult = await db.query("SELECT count(id) FROM alerts WHERE type = 'issues' ");
+
+    const issuesResult = await db.query("SELECT * FROM alerts WHERE type = 'issues'");
+
+
     res.render("index", {
         customersCount: customersCount.rows[0].count,
         customers: customersResult.rows,
         revenue: revenueResult.rows[0].sum,
         sales: salesResult.rows,
-        orderCount: orderCountResult.rows[0].count
+        orderCount: orderCountResult.rows[0].count,
+        issueCount: issuesCountResult.rows[0].count,
+        issues: issuesResult.rows
     });
   }catch(err){
     res.status(500).json({
@@ -52,12 +59,8 @@ app.listen(port, () => {
 });
 
 /*
-
 await db.query("");
 
-SELECT count(quantity) FROM orders 
-SELECT count(id) FROM alerts WHERE type = 'issues' 
-SELECT * FROM alerts WHERE type = 'issues' 
 SELECT count(id) FROM alerts WHERE type = 'notifications' 
 SELECT * FROM alerts WHERE type = 'notifications' 
 SELECT * FROM alerts WHERE type = 'tasks'

@@ -110,8 +110,8 @@ $(function () {
     // const cardOrders = $("#orders-amt");
     // cardOrders.append(`${ordersAmt}`);
 
-    const cardIssues = $("#issues-amt");
-    cardIssues.append(`${issuesAmt}`);
+    // const cardIssues = $("#issues-amt");
+    // cardIssues.append(`${issuesAmt}`);
 
     const notificationNumber = $("#notification-num");
     notificationNumber.append(`${notifAmt}`);
@@ -165,13 +165,13 @@ $(function () {
     });
 
  
-    const systemStatusList = $("#system-status-list");
+    // const systemStatusList = $("#system-status-list");
 
-    messages.forEach(msg => {
-        const li = $("<li>");
-        li.html(`${msg.messsage}`);
-        systemStatusList.append(li);
-    });
+    // messages.forEach(msg => {
+    //     const li = $("<li>");
+    //     li.html(`${msg.messsage}`);
+    //     systemStatusList.append(li);
+    // });
 
 
     const notificationsList = $("#notifications-list");
