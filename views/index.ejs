@@ -40,7 +40,7 @@
             <section class="stats">
                 <div class="card" id="card-revenue">
                     <div class="stat-title">Revenue</div>
-                    <div class="stat-value green"><span class="revenue-amt"><!--$48,250--></span></div>
+                    <div class="stat-value green"><span class="revenue-amt">$<%= revenue %></span></div>
                 </div>
                 <div class="card" id="card-customers">
                     <div class="stat-title">Customers</div>
@@ -68,7 +68,7 @@
 
                             <div id="tab-overview">
                                 <h3>Monthly Performance</h3>
-                                <p>Revenue is currently at <strong class="revenue-amt"> <!--$48,250--></strong></p>
+                                <p>Revenue is currently at <strong class="revenue-amt"> $<%= revenue %></strong></p>
                             </div>
 
                             <div id="tab-sales">
@@ -122,25 +122,14 @@
                             </thead>
 
                             <tbody id="customerTableBody">
-                                <!-- <tr>
-                                    <td>Alice Johnson</td>
-                                    <td>alice@example.com</td>
-                                    <td><span class="status status-active">Active</span></td>
-                                    <td>09/10/2026</td>
-                                </tr>
-                                <tr>
-                                    <td>Robert Smith</td>
-                                    <td>robert@example.com</td>
-                                    <td><span class="status status-pending">Pending</span></td>
-                                    <td>09/12/2026</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Maria Garcia</td>
-                                    <td>maria@example.com</td>
-                                    <td><span class="status status-active">Active</span></td>
-                                    <td>09/15/2026</td>
-                                </tr> -->
+                                <% customers.forEach(customer => { %>
+                                    <tr>
+                                        <td><% customer.name %></td>
+                                        <td><% customer.email %></td>
+                                        <td><% customer.status %></td>
+                                        <td><% customer.joined %></td>
+                                    </tr>
+                               <% }) %>
                             </tbody>
                         </table>                        
                     </section>

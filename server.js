@@ -20,12 +20,25 @@ app.use(express.static("public"));
 
 
 app.get("/", async (req, res) => {
-    
+  try{
     const customersCount = await db.query("SELECT count(*) FROM customers");
+
+    const customersResult = await db.query(`SELECT * FROM customers ORDER BY id LIMIT $1 OFFSET $2`, [10, 0]);
+
+    const revenueResult = await db.query("SELECT sum(saleamount) FROM sales ");
     
     res.render("index", {
-        customersCount: customersCount.rows[0].count
+        customersCount: customersCount.rows[0].count,
+        customers: customersResult.rows,
+        revenue: revenueResult.rows[0].sum
     });
+  }catch(err){
+    res.status(500).json({
+        error: "Internal server error",
+        message: err.message
+    });
+  }  
+    
 });
 
 app.listen(port, () => {

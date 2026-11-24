@@ -101,11 +101,11 @@ $(function () {
     const userNameObj = $("#username");
     userNameObj.append(`${username}`);
 
-    const cardRevenue = $(".revenue-amt");   // this must select the class .revenue-amt, which will affect two elements. So count this 2 times.
-    cardRevenue.append(`${revenueAmt}`);
+    // const cardRevenue = $(".revenue-amt");   // this must select the class .revenue-amt, which will affect two elements. So count this 2 times.
+    // cardRevenue.append(`${revenueAmt}`);
 
-    const cardCustomers = $("#customer-num");
-    cardCustomers.append(`${customerNum}`);
+    // const cardCustomers = $("#customer-num");
+    // cardCustomers.append(`${customerNum}`);
 
     const cardOrders = $("#orders-amt");
     cardOrders.append(`${ordersAmt}`);
@@ -118,28 +118,28 @@ $(function () {
 
     const tableBody = $("#customerTableBody");
 
-    customers.forEach(customer => {
-        const row = $("<tr>");
+    // customers.forEach(customer => {
+    //     const row = $("<tr>");
 
-        var statusClass;
-            if (customer.status.toLowerCase() === "active"){
-                statusClass = "status-active";
-            } else {
-                statusClass = "status-pending";
-            }
-        row.html(`
-            <td>${customer.name}</td>
-            <td>${customer.email}</td>
-            <td>
-                <span class="status ${statusClass}">
-                    ${customer.status}
-                </span>
-            </td>
-            <td>${customer.joined}</td>
-        `);
+    //     var statusClass;
+    //         if (customer.status.toLowerCase() === "active"){
+    //             statusClass = "status-active";
+    //         } else {
+    //             statusClass = "status-pending";
+    //         }
+    //     row.html(`
+    //         <td>${customer.name}</td>
+    //         <td>${customer.email}</td>
+    //         <td>
+    //             <span class="status ${statusClass}">
+    //                 ${customer.status}
+    //             </span>
+    //         </td>
+    //         <td>${customer.joined}</td>
+    //     `);
 
-        tableBody.append(row);
-    });
+    //     tableBody.append(row);
+    // });
 
    
     const salesTableBody = $("#salesTableBody");
