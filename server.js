@@ -18,12 +18,19 @@ app.set("view engine", "ejs");
 //Mind you this is a work in progress
 app.use(express.static("public"));
 
+const limit = 15;
 
 app.get("/", async (req, res) => {
   try{
     const customersCount = await db.query("SELECT count(*) FROM customers");
 
-    const customersResult = await db.query("SELECT * FROM customers ORDER BY id LIMIT $1 OFFSET $2", [10, 0]);
+    const page = Number(req.query.page) || 1;
+    const currentPage = page;
+    const offset = (page - 1) * limit;
+    const totalCustomers = customersCount.rows[0].count;
+    const totalPages = totalCustomers / limit;
+
+    const customersResult = await db.query("SELECT * FROM customers ORDER BY id LIMIT $1 OFFSET $2", [limit, offset]);
 
     const revenueResult = await db.query("SELECT sum(saleamount) FROM sales");
 
@@ -44,6 +51,8 @@ app.get("/", async (req, res) => {
     res.render("index", {
         customersCount: customersCount.rows[0].count,
         customers: customersResult.rows,
+        currentPage,
+        totalPages,
         revenue: revenueResult.rows[0].sum,
         sales: salesResult.rows,
         orderCount: orderCountResult.rows[0].count,

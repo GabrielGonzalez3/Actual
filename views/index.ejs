@@ -87,7 +87,7 @@
                                             <tr>
                                                 <td><%= sale.name %></td>
                                                 <td><%= sale.quantity %></td>
-                                                <td><%= sale.saleamount %></td>
+                                                <td>$<%= sale.saleamount %></td>
                                             </tr>
                                         <% }) %>
                                     </tbody>
@@ -116,12 +116,30 @@
                                     <tr>
                                         <td><%= customer.name %></td>
                                         <td><%= customer.email %></td>
-                                        <td><%= customer.status %></td>
-                                        <td><%= customer.datejoined %></td>
+                                        <td><span class="status <%=customer.status === 'active' ? 'status-active' : 'status-pending' %>">
+                                            <%= customer.status %>
+                                        </span>
+                                        </td>
+                                        <td><%= new Date(customer.datejoined).toLocaleDateString('en-US') %></td>
                                     </tr>
                                <% }) %>
                             </tbody>
-                        </table>                        
+                        </table>
+                        <div class="pagination">
+                            <% if (locals.currentPage) {%>
+                                <a href="/?page=<%= currentPage - 1 %>">
+                                    Previous
+                                </a>
+                                <% for(let i = 1; i <= Math.min(totalPages, 10); i++) { %>
+                                    <a href="/?page=<%= i %>">
+                                        <%= i %>
+                                    </a>
+                                <% } %>
+                                <a href="/?page=<%= currentPage + 1 %>">
+                                    Next
+                                </a>
+                            <% } %>
+                    </div>                        
                     </section>
                 </div>
 
