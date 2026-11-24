@@ -130,8 +130,12 @@
                                 <a href="/?page=<%= currentPage - 1 %>">
                                     Previous
                                 </a>
-                                <% for(let i = 1; i <= Math.min(totalPages, 10); i++) { %>
-                                    <a href="/?page=<%= i %>">
+                                <% const startPage = Math.floor((currentPage - 1) / 10) * 10 + 1 %>
+                                <% const endPage = Math.min(startPage + 9, totalPages) %>
+
+                                <% for(let i = startPage; i <= endPage; i++) { %>
+                                    <a href="/?page=<%= i %>"
+                                    class="<%= currentPage === i ? 'active' : '' %>">
                                         <%= i %>
                                     </a>
                                 <% } %>
